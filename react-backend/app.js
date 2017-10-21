@@ -23,6 +23,7 @@ mongoose.connect('mongodb://mhamasak:fdsilv@ds227555.mlab.com:27555/waive-goodby
 var index = require('./routes/index');
 var users = require('./routes/users');
 var dashboard = require('./routes/dashboard');
+var trip = require('./routes/trip');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/dashboard', dashboard);
+app.use('/trip', trip);
 
 
 var UserSchema = require('./models/UserSchema');
