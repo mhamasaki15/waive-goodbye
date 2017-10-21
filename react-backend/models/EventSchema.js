@@ -1,11 +1,14 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var RecipientSchema = require("./RecipientSchema");
 
 var EventSchema = new Schema({
     createdBy: String,
     name: String,
     date: String,
-    recepients: String
+    recipients: [RecipientSchema]
+
+
 
 });
 
