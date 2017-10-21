@@ -20,28 +20,36 @@
 
 //export default App;
 
-import React, { Component } from 'react';
-import './App.css';
-
+/*import { MasterPage, HomePage, LoginPage } from './';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 class App extends Component {
-  state = {users: []}
 
-  componentDidMount() {
-    fetch('/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <h1>Users</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.username}</div>
-        )}
-      </div>
-    );
-  }
 }
 
 export default App;
+
+  render(
+<Router history={browserHistory}>
+  <Route path='/' component={MasterPage}/>
+  <Route path='/login' component={LoginPage} />
+</Router>,
+  document.getElementById('app-container')
+  );
+}*/
+
+
+import React from "react";
+import Header from "./Header";
+import Main from "./Main";
+
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+  </div>
+);
+
+export default App;
+
