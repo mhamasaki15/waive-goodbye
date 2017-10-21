@@ -4,9 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+mongoose.Promise = require('bluebird');
+mongoose.connect('mongodb://mhamasak:fdsilv@ds227555.mlab.com:27555/waive-goodbye', {useMongoClient: true})
+    .then(() => { // if all is ok we will be here
+      console.log('Start');
+    })
+    .catch(err => { // if error we will be here
+        console.error('App starting error:', err.stack);
+        process.exit(1);
+    });
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -24,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
