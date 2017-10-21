@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
 /* Should take trip id as parameter. Should authenticate that user is the user
 who created trip, then send back information about trip. This is probably gonna 
@@ -17,6 +18,9 @@ router.get('/organizer/form', function(req, res, next) {
 receive the emails. Should take trip id as parameter, and also message used 
 to start the trip. Return true if successful */
 router.post('/organizer/start', function(req, res, next) {
+	//password: sdhacks2017
+	//j/1/1990
+
 
 });
 
