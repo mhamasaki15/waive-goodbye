@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 var RecipientSchema = new Schema({
     email: String,
     name: String,
-    status: Boolean
+    status: Boolean,
+    tripId: {type: Schema.Types.ObjectId, ref: 'EventSchema'},
+    documentUrl: String
 });
 
 
