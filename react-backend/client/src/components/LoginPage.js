@@ -13,14 +13,16 @@ export default class LoginPage extends Component {
         this.state = {
             redirect: false
         };
+
+        this.login = this.login.bind(this);
     }
-    login = function() {
+
+    login() {
         var usr = "value1";
         var pass = "value2";
-
-        console.log('wate');
-        //console.log(this.state.redirect);
-        let self = this;
+        console.log(this.state.redirect);
+        console.log("asdfasdfads");
+        var self = this;
         fetch("/log", {
             method:'POST',
             headers: {
@@ -31,7 +33,7 @@ export default class LoginPage extends Component {
                 username: usr,
                 password: pass
             })
-        }).then(function(response = response.json()) {
+        }).then(function(response) {
             console.log("why are u like this");
             console.log(self.state.redirect);
             console.log("pls");
@@ -39,6 +41,8 @@ export default class LoginPage extends Component {
             if (response.status === 200) self.setState({
                 redirect: true
             });
+            console.log(self.state.redirect);
+
             //this.props.router.push('/');
             //return response.json();
         }).catch(function(err){
@@ -62,7 +66,7 @@ export default class LoginPage extends Component {
                 <input type="password" id="inputPassword" className={styles.login_box} placeholder="******" required />
                 <p className={styles.input_title}></p>
                 <div className={styles.btnContainer}>
-                <button className={styles.btn} type="submit" onClick = {this.login()} >Login</button>
+                <button className={styles.btn} type="button" onClick = {this.login} >Login</button>
                 </div>
             </form>
     </div>);

@@ -5,8 +5,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import "react-bootstrap-table/dist/react-bootstrap-table.min.css";
 
-import { Link } from 'react-router';
-
 //import styles from './DashboardPage.css';
 
 require('../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css');
