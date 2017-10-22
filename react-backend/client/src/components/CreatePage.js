@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styles from './CreatePage.css';
+import { Redirect } from 'react-router';
+
 
 //'use strict';
 
@@ -17,23 +19,21 @@ const contactArray = [{
 
 export default class CreatePage extends Component {
   constructor(props){
-  super(props);
+    super(props);
     this.state = {
-    eventName:'',
-    eventDate:'',
-    pdfString:'',
-    stringContactName:'',
-    stringContactEmail:''
+      eventName:'',
+      eventDate:'',
+      pdfString:'',
+      stringContactName:'',
+      stringContactEmail:'',
+      redirect: false
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
      
-};
-
-
-this.handleChange = this.handleChange.bind(this);
-this.handleDateChange = this.handleDateChange.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
-}
-
-
 handleChange(event) {
   console.log("even!");
   this.setState({eventName: event.target.value });
@@ -52,12 +52,12 @@ uploadFiles(event){
   let reader = new FileReader();
   let file = event.target.files[0];
 
-    this.setState({pdfString: file.name});
-
+  this.setState({pdfString: file.name});
 }
 
 
 handleSubmit(event) {
+  event.preventDefault();
   var nameArray = this.state.stringContactName.split(',');
   var emailArray = this.state.stringContactEmail.split(',');
 
@@ -69,8 +69,9 @@ handleSubmit(event) {
     contactEmail: emailArray
   };
 
+  var self = this;
   console.log(body);
-  fetch("http://localhost:3000/trip/create", {
+  fetch("/trip/create", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -79,19 +80,27 @@ handleSubmit(event) {
     body: JSON.stringify(body)
   }).then(function(response) {
     console.log("response");
-    //return response.json();
+    console.log(response.status);
+    if (response.status == 200){
+      self.setState({
+        redirect:true
+      });
+    }
+  }).catch(function(err){
+    console.log("error");
   });
 
 }
 
-
-
   render() {
+    if (this.state.redirect) {
+        return <Redirect to="/dashboard" />;
+    }
+
     return (
       <div className={styles.card}>
       <h1>Create Your Event</h1>
        <form onSubmit={this.handleSubmit}>
-               
                 <p className={styles.input_title}>Event Name</p>
 
                 <input type="text" id="eventName"  className={styles.login_box} onChange = {this.handleChange.bind(this)} placeholder="Event Name" required autoFocus />
