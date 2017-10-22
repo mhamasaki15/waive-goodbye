@@ -11,6 +11,11 @@ var 	email = "sirawan@usc.edu",				// your account email
 var request = require('request');
 
 router.get('/', function(req,res,next){
+    var url = "https://demo.docusign.net/restapi/v2/accounts/3916189/envelopes/";
+    var options = initializeRequest(url, "GET", "", "sirawan@usc.edu", "nosleep");
+    request(options, function(err, response, body) {
+        console.log(body);
+    });
     EventSchema.find({createdBy: "value1"}).exec(function(err, events){
     	var resp = {
     		body: {
@@ -48,15 +53,6 @@ router.post('/dashboard', function(req,res,next) {
 /* This should include both trips organized and trips part of */
 /* I guess it should also include relevant user information. */
 /* So it can say "welcome melanie" */
-router.get('/', function(req, res, next) {
-    var url = "https://demo.docusign.net/restapi/v2/accounts/3916189/envelopes?from_date=2017-10-22";
-    var options = initializeRequest(url, "GET", "", "sirawan@usc.edu", "nosleep");
-    request(options, function(err, response, body) {
-
-    });
-
-
-});
 
 function initializeRequest(url, method, body, email, password) {
 	var options = {
