@@ -35,6 +35,7 @@ hr{
     font-weight: 100;
     color:rgba(164, 164, 164, 0.44);
     padding-top: 10px;
+    font-size: 2em;
 }
 
 :local(.cardcontainer){

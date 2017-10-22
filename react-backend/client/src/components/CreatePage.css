@@ -1,3 +1,6 @@
+html, body{
+	background: #5EAF39;
+}
 :local(.contactInputs){
 	display:inline-block;
 	padding-right: 10px;
@@ -7,9 +10,10 @@
 
 :local(.card) {
 	text-align: center;
-    background-color: #FFFFFF;
+    background-color: #EDF5E1;
     /* just in case there no content*/
     padding: 1px 25px 30px !important;
+    font-family: "Raleway";
     margin: 0 auto 25px;
     margin-top: 15% !important;
     /* shadows and rounded borders */
@@ -27,3 +31,23 @@
 	padding-left: 35%;
 	padding-top: 10px;
 }
+
+
+
+:local(button){
+	border: none;
+  outline: none;
+  background-color: #093A69;
+  letter-spacing: 1px;
+  color: white;
+  font-weight: normal;
+  width: 70%;
+  max-width: 200px;
+  max-height: 20px;
+  position: relative;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 1em;
+  text-align: center;
+  padding: 1.0em 1.7em 2em;
+};

@@ -5,63 +5,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Link, Redirect } from 'react-router-dom';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import "react-bootstrap-table/dist/react-bootstrap-table.min.css";
-
+import styles from './DashboardPage.css';
 
 'use strict';
-//import styles from './DashboardPage.css';
+
 
 require('../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css');
 
-const events = [{
-		event: 'San Diego Field Trip',
-		date: new Date(2017, 11, 20).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'SDHacks2017',
-		date: new Date(2017, 10, 21).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Zoo Field Trip',
-		date: new Date(2018, 1, 21).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Journey to the Center of the Earth',
-		date: new Date(2018, 4, 2).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Willy Wonka Factory Tour',
-		date: new Date(2018, 7, 21).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Ski Trip',
-		date: new Date(2018, 1, 10).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Rock Climbing Trip',
-		date: new Date(2018, 5, 6).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Magic Show',
-		date: new Date(2018, 3, 21).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Magic Show',
-		date: new Date(2018, 3, 21).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Magic Show',
-		date: new Date(2018, 3, 21).toDateString(),
-		overview: "Check Status"
-	},{
-		event: 'Magic Show',
-		date: new Date(2018, 3, 21).toDateString(),
-		overview: "Check Status"
-	}];
 
-
-var createStyle = {
-	color: 'black'
-};
 
 
 export default class DashboardPage extends Component{
@@ -113,9 +64,9 @@ render(){
 		onRowClick: this.navigateToOverviewPage
 	};
 	return(
-		<div>
+		<div styles={styles.mainContainer}>
 	
-		<h2><Link to="/create/event" style={createStyle}>
+		<h2 styles={styles.createStyle}><Link to="/create/event">
               Create An Event + 
          </Link></h2>
 
@@ -137,3 +88,52 @@ render(){
 	);
 }
 }
+
+
+/*
+const events = [{
+		event: 'San Diego Field Trip',
+		date: new Date(2017, 11, 20).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'SDHacks2017',
+		date: new Date(2017, 10, 21).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Zoo Field Trip',
+		date: new Date(2018, 1, 21).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Journey to the Center of the Earth',
+		date: new Date(2018, 4, 2).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Willy Wonka Factory Tour',
+		date: new Date(2018, 7, 21).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Ski Trip',
+		date: new Date(2018, 1, 10).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Rock Climbing Trip',
+		date: new Date(2018, 5, 6).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Magic Show',
+		date: new Date(2018, 3, 21).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Magic Show',
+		date: new Date(2018, 3, 21).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Magic Show',
+		date: new Date(2018, 3, 21).toDateString(),
+		overview: "Check Status"
+	},{
+		event: 'Magic Show',
+		date: new Date(2018, 3, 21).toDateString(),
+		overview: "Check Status"
+	}];
+*/
