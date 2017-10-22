@@ -50,7 +50,7 @@ export default class LoginPage extends Component {
 
   render() {
     if (this.state.redirect) {
-        return <Redirect to="/" />;
+        return <Redirect to="/dashboard" />;
     }
 
     return (
