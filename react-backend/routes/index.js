@@ -5,6 +5,7 @@ var User = require("../models/UserSchema");
 /* GET home page. */
 router.get('/', function(req, res, next) {
  // res.render('index', { title: 'Express' });
+ console.log(req.session.passport.user);
 });
 
 
@@ -24,12 +25,17 @@ router.post('/register', function(req, res) {
    });
 });
 
-router.get('/login', function(req, res) {
+router.get('/log', function(req, res) {
   res.render('login', { user : req.user });
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-        res.redirect('/dashboard');
+router.post('/log', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
+        console.log("success");
+        //console.log(res.json().body());
+        //console.log(const module = require('module');.body());
+        console.log(req.session.passport.user);
+        return res.status(200).end();
+        //res.redirect('/dashboard');
 });
 
 router.get('/logout', function(req, res) {

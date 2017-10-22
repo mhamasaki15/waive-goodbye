@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
+//var RegisterStrategy = require('passport-local-register').Strategy;
+var Strategy = require('passport-local').Strategy;
 
 
 mongoose.Promise = require('bluebird');
@@ -53,7 +53,7 @@ app.use('/trip', trip);
 
 
 var UserSchema = require('./models/UserSchema');
-passport.use(new LocalStrategy(UserSchema.authenticate()));
+passport.use(new Strategy(UserSchema.authenticate()));
 passport.serializeUser(UserSchema.serializeUser());
 passport.deserializeUser(UserSchema.deserializeUser());
 
