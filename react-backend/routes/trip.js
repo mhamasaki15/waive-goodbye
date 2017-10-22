@@ -45,7 +45,9 @@ var 	email = "sirawan@usc.edu",				// your account email
 /* Should take trip id as parameter. Should authenticate that user is the user
 who created trip, then send back information about trip. This is probably gonna 
 be a HUGE get */
-router.get('/organizer/summary', function(req, res, next) {
+router.post('/create', function(req, res, next) {
+	var recipients = req.body.recipients;
+
 	//Should give trip id
 	async.waterfall(
 	[
@@ -68,7 +70,9 @@ router.get('/organizer/summary', function(req, res, next) {
 			});
 		},
 
-		function(next) {   	
+		function(next) {
+
+			//TODO: get all signers   	
 	    	var url = baseUrl + "/envelopes";
 	    	// following request body will place 1 signature tab 100 pixels to the right and
 	    	// 100 pixels down from the top left of the document that you send in the request
@@ -95,7 +99,6 @@ router.get('/organizer/summary', function(req, res, next) {
 				}],
 				"status": "sent",
 			};
-			//(dump(body));
 			
 			// set request url, method, body, and headers
 			var options = initializeRequest(url, "POST", body, email, password);
