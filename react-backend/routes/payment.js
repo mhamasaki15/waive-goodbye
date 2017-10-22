@@ -209,11 +209,7 @@ function requestPayment(loginAccounts, next){
 
 
 router.get('/organizer/checkEnvelopes',function(req,res) {
-    var url = "https://demo.docusign.net/restapi/v2/accounts/3916189/envelopes?from_date=2017-10-21";
-    var options = initializeRequest(url, "GET", "", "sirawan@usc.edu", "nosleep");
-    request(options, function(err, response, body) {
-            res.json(body);
-    });
+
 
 
 });
