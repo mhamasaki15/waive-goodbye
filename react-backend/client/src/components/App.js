@@ -43,11 +43,14 @@ export default App;
 import React from "react";
 import Header from "./Header";
 import Main from "./Main";
+import styles from './App.css';
 
 const App = () => (
   <div>
     <Header />
+    <div className={styles.mainContainer}>
     <Main />
+    </div>
   </div>
 );
 
