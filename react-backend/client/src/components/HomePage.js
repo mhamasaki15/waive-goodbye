@@ -5,7 +5,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <p>
-      Dashboard</p>
+      HomePage</p>
     );
   }
 }

@@ -8,7 +8,7 @@
 	max-height:20% !important;
 }
 
-:local(a){
+:local(.li){
 	font-family: "Raleway" !important;
 	color: white !important;
 	text-decoration: none ;

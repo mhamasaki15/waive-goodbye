@@ -21,7 +21,12 @@ export default class Header extends React.Component {
             <li><Link to="/login">
               Login
               </Link></li>
-          </ul>    
+          </ul> 
+          <ul className={styles.navbar_left}>
+            <li><Link to="/login">
+              Log Out
+              </Link></li>
+          </ul>     
         
       </nav>
     );

@@ -23,7 +23,9 @@
 }
 
 :local(.mainContainer){
-  padding-top: 5% !important ;
+  padding-top: 5% ;
+  padding-left: 5%;
+  padding-right: 5%;
 };
 
 @keyframes App-logo-spin {
