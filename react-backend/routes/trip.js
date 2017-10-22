@@ -22,13 +22,15 @@ var 	email = "sirawan@usc.edu",				// your account email
 who created trip, then send back information about trip. This is probably gonna
 be a HUGE get */
 router.post('/create', function(req, res, next) {
-	console.log(req.body);
+	//console.log(req.body);
 	var recipientNames = req.body.contactNames;
 	var recipientEmails = req.body.contactEmail;
 	console.log(recipientNames);
 	console.log(recipientEmails);
+	console.log(req.body.date);
 	var eventName = req.body.name;
-	var eventDate = Date(req.body.date);
+	var eventDate = (req.body.date);
+	console.log(eventDate);
 	var pdfName = req.body.pdfString;//req.body.pdfName; //TODO
 	var sender = "value1";
     var recipientObjects;
