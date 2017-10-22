@@ -26,6 +26,7 @@ export default class CreatePage extends Component {
       pdfString:'',
       stringContactName:'',
       stringContactEmail:'',
+      moneyRequest:'',
       redirect: false
     };
 
@@ -39,6 +40,9 @@ handleChange(event) {
   this.setState({eventName: event.target.value });
 }
 handleDateChange(event) {
+  this.setState({eventDate: event.target.value });
+}
+handleMoneyChange(event) {
   this.setState({eventDate: event.target.value });
 }
 handleContactNameChange(event) {
@@ -64,6 +68,7 @@ handleSubmit(event) {
   var body = {
     name: this.state.eventName,
     date: this.state.eventDate,
+    payment: this.state.moneyRequest,
     pdfString: this.state.pdfString,
     contactNames: nameArray,
     contactEmail: emailArray
@@ -126,6 +131,10 @@ handleSubmit(event) {
             type="file" 
             onChange={(e)=>this.uploadFiles(e)} />
               </div>
+
+              <p className={styles.input_title}>Payment Request</p>
+
+                <input type="text" id="moneyRequest"  className={styles.login_box} onChange = {this.handleMoneyChange.bind(this)} placeholder="0" required autoFocus />
 
                 <p className={styles.input_title}></p>
                 <div className={styles.btnContainer}>
