@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-table": "^1.11.2",
     "history": "^4.7.2",
     "react": "^16.0.0",
+    "react-bootstrap-table": "^4.1.0",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "react-table": "^6.6.0",
+    "react-toolbox": "^2.0.0-beta.12",
+    "reactstrap": "^4.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
