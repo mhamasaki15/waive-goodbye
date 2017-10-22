@@ -1,9 +1,7 @@
-import React, { Component, Text, View, StyleSheet, TextInput, TouchableHighlight } from 'react';
-import DocumentTitle from 'react-document-title';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
 import styles from './CreatePage.css';
 
-'use strict';
+//'use strict';
 
 const contactArray = [{
     name: 'John Smith',
@@ -19,11 +17,11 @@ const contactArray = [{
 
 export default class CreatePage extends Component {
   constructor(props){
-
   super(props);
     this.state = {
     eventName:'',
     eventDate:'',
+<<<<<<< HEAD
     pdfString:'',
     stringContactName:'',
     stringContactEmail:''
@@ -35,9 +33,20 @@ this.handleChange = this.handleChange.bind(this);
 this.handleDateChange = this.handleDateChange.bind(this);
 this.handleSubmit = this.handleSubmit.bind(this);
 }
+=======
+    pdfString:'fieldtrip.pdf',
+    contactArray: this.contactArray
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+>>>>>>> 24f2e4d6687c484619a26bb040512aaaaa944cc5
 
 
 handleChange(event) {
+  console.log("even!");
   this.setState({eventName: event.target.value });
 }
 handleDateChange(event) {
@@ -62,6 +71,7 @@ uploadFiles(event){
 handleSubmit(event) {
   var nameArray = this.state.stringContactName.split(',');
   var emailArray = this.state.stringContactEmail.split(',');
+
   var body = {
     name: this.state.eventName,
     date: this.state.eventDate,
@@ -69,7 +79,20 @@ handleSubmit(event) {
     contactNames: nameArray,
     contactEmail: emailArray
   };
-  //stop trying to make fetch happen
+
+  console.log(body);
+  fetch("http://localhost:3000/trip/create", {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  }).then(function(response) {
+    console.log("response");
+    //return response.json();
+  });
+
 }
 
 
@@ -80,6 +103,7 @@ handleSubmit(event) {
        <form onSubmit={this.handleSubmit}>
                
                 <p className={styles.input_title}>Event Name</p>
+<<<<<<< HEAD
                 <input type="text" id="eventName"  className={styles.login_box} onChange = {this.handleChange.bind(this)} placeholder="Event Name" required autoFocus />
                 <p className={styles.input_title}>Event Date</p>
                 <input type="text" id="eventDate" className={styles.login_box} onChange = {this.handleDateChange.bind(this)} placeholder="01/01/2017" required />
@@ -109,6 +133,11 @@ handleSubmit(event) {
               </text>
               </div>
 
+=======
+                <input type="text" id="eventName" name="eventName" value={this.state.eventName} className={styles.login_box} onChange = {this.handleChange} placeholder="Event Name" required autoFocus />
+                <p className={styles.input_title}>Event Date</p>
+                <input type="text" id="eventDate" className={styles.login_box} onChange = {this.handleDateChange} placeholder="01/01/2017" required />
+>>>>>>> 24f2e4d6687c484619a26bb040512aaaaa944cc5
                 <p className={styles.input_title}></p>
                 <div className={styles.btnContainer}>
                 <button className={styles.btn} type="submit">Create Event</button>

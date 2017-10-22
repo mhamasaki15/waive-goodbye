@@ -24,6 +24,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var dashboard = require('./routes/dashboard');
 var trip = require('./routes/trip');
+var payment = require('./routes/payment')
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/dashboard', dashboard);
 app.use('/trip', trip);
+app.use('/payment',payment);
 
 
 var UserSchema = require('./models/UserSchema');
