@@ -27,10 +27,11 @@ router.post('/create', function(req, res, next) {
 	var eventName = req.body.name;
 	var eventDate = Date(req.body.date);
 	var pdfName = "document.pdf";//req.body.pdfName; //TODO
+	var sender = "value1";
 
 	console.log(recipients);
 	console.log(sender);
-		var sender = req.session.passport.user;
+		//var sender = req.session.passport.user;
 	console.log(eventName);
 	console.log(eventDate);
 
@@ -39,7 +40,7 @@ router.post('/create', function(req, res, next) {
 	newEvent.save(function (err){
 		recipientObjects = [ ];
 		recipients.forEach(function(element){
-			recipientObjects.insert({
+			recipientObjects.push({
 				email: element.email,
 				name: element.name,
 				status: false,
