@@ -20,6 +20,10 @@ const invites = [{
 
 
 export default class OverviewPage extends Component{
+	constructor(props){
+		super(props);
+		console.log(props.match.params.tripName);
+	}
 
 render(){
 	return(

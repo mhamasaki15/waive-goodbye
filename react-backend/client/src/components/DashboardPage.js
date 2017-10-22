@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 //import ReactTable from "react-table";
 //import "react-table/react-table.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import "react-bootstrap-table/dist/react-bootstrap-table.min.css";
 
 
-
+'use strict';
 //import styles from './DashboardPage.css';
 
 require('../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css');
@@ -58,11 +58,6 @@ const events = [{
 		overview: "Check Status"
 	}];
 
-const options = {
-	onRowClick: function(){
-alert('youlciked');
-	}
-};
 
 var createStyle = {
 	color: 'black'
@@ -70,8 +65,31 @@ var createStyle = {
 
 
 export default class DashboardPage extends Component{
+	constructor(){
+		super();
+		this.state = {
+			redirect: false,
+			tripUrl: ""
+		};
+		this.navigateToOverviewPage = this.navigateToOverviewPage.bind(this);
+	}
+
+	navigateToOverviewPage(row){
+		console.log(row.event);
+		this.setState({
+			redirect: true,
+			tripUrl: "/event/overview/" + row.event
+		});
+	};
 
 render(){
+	if (this.state.redirect) {
+        return <Redirect to= {this.state.tripUrl} />;
+    }
+
+	const options = {
+		onRowClick: this.navigateToOverviewPage
+	};
 	return(
 		<div>
 	
