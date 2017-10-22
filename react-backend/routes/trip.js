@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var nodemailer = require('nodemailer');
 
 /* Should take trip id as parameter. Should authenticate that user is the user
-who created trip, then send back information about trip. This is probably gonna 
+who created trip, then send back information about trip. This is probably gonna
 be a HUGE get */
 router.get('/organizer/summary', function(req, res, next) {
 
@@ -14,13 +13,10 @@ router.get('/organizer/form', function(req, res, next) {
 
 });
 
-/* Should send out all the emails for the parents of the children trying to 
-receive the emails. Should take trip id as parameter, and also message used 
+/* Should send out all the emails for the parents of the children trying to
+receive the emails. Should take trip id as parameter, and also message used
 to start the trip. Return true if successful */
 router.post('/organizer/start', function(req, res, next) {
-	//password: sdhacks2017
-	//j/1/1990
-
 
 });
 
@@ -38,7 +34,7 @@ router.get('/overview', function(req, res, next) {
 });
 
 
-/* Should take all the trip information in the request body, and do all the necessary 
+/* Should take all the trip information in the request body, and do all the necessary
 work to insert it all in the database. Should return true if successful */
 router.post('/', function(req, res, next) {
 
