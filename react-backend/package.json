@@ -24,6 +24,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.2.1",
+
+    "passport-local-register": "^1.0.4",
     "path": "^0.12.7",
     "request": "^2.83.0",
     "serve-favicon": "~2.4.5"

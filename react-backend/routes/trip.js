@@ -43,7 +43,7 @@ var 	email = "sirawan@usc.edu",				// your account email
 
 
 /* Should take trip id as parameter. Should authenticate that user is the user
-who created trip, then send back information about trip. This is probably gonna 
+who created trip, then send back information about trip. This is probably gonna
 be a HUGE get */
 router.post('/create', function(req, res, next) {
 	var recipients = req.body.recipients;
@@ -87,7 +87,7 @@ router.post('/create', function(req, res, next) {
 								"xPosition": "100",
 								"yPosition": "100",
 								"documentId": "1",
-								"pageNumber": "1"																					
+								"pageNumber": "1"
 							}]
 						}
 					}]
@@ -99,13 +99,12 @@ router.post('/create', function(req, res, next) {
 				}],
 				"status": "sent",
 			};
-			
 			// set request url, method, body, and headers
 			var options = initializeRequest(url, "POST", body, email, password);
-		
+
 			// change default Content-Type header from "application/json" to "multipart/form-data"
 			options.headers["Content-Type"] = "multipart/form-data";
-			
+
 			// configure a multipart http request with JSON body and document bytes
 			options.multipart = [{
 						"Content-Type": "application/json",
@@ -122,7 +121,7 @@ router.post('/create', function(req, res, next) {
 			request(options, function(err, res, body) {
 				parseResponseBody(err, res, body);
 			});
-		} // end function    
+		} // end function
 
 	]);
 	return res.status(200);
@@ -179,13 +178,10 @@ router.get('/organizer/form', function(req, res, next) {
 
 });
 
-/* Should send out all the emails for the parents of the children trying to 
-receive the emails. Should take trip id as parameter, and also message used 
+/* Should send out all the emails for the parents of the children trying to
+receive the emails. Should take trip id as parameter, and also message used
 to start the trip. Return true if successful */
 router.post('/organizer/start', function(req, res, next) {
-	//password: sdhacks2017
-	//j/1/1990
-
 
 });
 
@@ -203,7 +199,7 @@ router.get('/overview', function(req, res, next) {
 });
 
 
-/* Should take all the trip information in the request body, and do all the necessary 
+/* Should take all the trip information in the request body, and do all the necessary
 work to insert it all in the database. Should return true if successful */
 router.post('/', function(req, res, next) {
 
@@ -212,7 +208,7 @@ router.post('/', function(req, res, next) {
 
 
 
-function initializeRequest(url, method, body, email, password) {	
+function initializeRequest(url, method, body, email, password) {
 	var options = {
 		"method": method,
 		"uri": url,
@@ -226,11 +222,11 @@ function initializeRequest(url, method, body, email, password) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function addRequestHeaders(options, email, password) {	
+function addRequestHeaders(options, email, password) {
 	// JSON formatted authentication header (XML format allowed as well)
 	dsAuthHeader = JSON.stringify({
 		"Username": email,
-		"Password": password, 
+		"Password": password,
 		"IntegratorKey": integratorKey	// global
 	});
 	// DocuSign authorization header
@@ -250,5 +246,3 @@ function parseResponseBody(err, res, body) {
 
 
 module.exports = router;
-
-
