@@ -1,0 +1,32 @@
+:local(.navbar){
+	background:black;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top:0;
+	padding-top: 10px;
+	max-height:20% !important;
+}
+
+:local(a){
+	font-family: "Raleway" !important;
+	color: white !important;
+	text-decoration: none ;
+}
+
+:local(.navbar_left){
+	display:inline-block;
+	float: left;
+	
+};
+
+:local(.navbar_right){
+	
+	float: right;
+	padding-left:500px;
+};
+
+
+:local(.container){
+	background:black;
+}
