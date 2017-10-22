@@ -7,16 +7,22 @@
 	padding-top: 10px;
 	max-height:20% !important;
 }
+:local(a){
+	color: white !important;
+	font-family: "Raleway" !important;
+text-decoration: none !important;
+};
 
 :local(.li){
 	font-family: "Raleway" !important;
 	color: white !important;
-	text-decoration: none ;
+	text-decoration: none !important;
 }
 
 :local(.navbar_left){
 	display:inline-block;
 	float: left;
+	color:white;
 	
 };
 
