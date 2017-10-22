@@ -1,7 +1,22 @@
+html, body{
+
+padding-top: 2% !important;
+background-color: #62DA96 !important;
+}
+
+h1{
+	color: #093A69;
+}
+
 :local(.mainContainer){
 	padding-top: 20%;
+	background-color: white;
 };
 
 :local(.createStyle){
 	padding-top: 0px;
+};
+
+:local(.tableStyle){
+	background-color: white;
 };

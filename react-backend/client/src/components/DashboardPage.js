@@ -76,7 +76,7 @@ render(){
          </h1>
         </div>
 
-<BootstrapTable data={this.state.events} striped={true} hover={true} options = {options}>
+<BootstrapTable data={this.state.events} style ={styles.tableStyle} striped={true} hover={true} options = {options}>
       <TableHeaderColumn dataField="event" isKey={true} dataAlign="center" dataSort={true}>Event</TableHeaderColumn>
       <TableHeaderColumn dataField="date" dataSort={true}>Date</TableHeaderColumn>
       <TableHeaderColumn dataField="overview" dataFormat={ this.colFormatter}>Overview</TableHeaderColumn>
