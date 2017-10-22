@@ -21,7 +21,6 @@ export default class OverviewPage extends Component{
 		};
 
 		this.componentDidMount = this.componentDidMount.bind(this);
-		//set something in motion
 	}
 
 	componentDidMount(){
