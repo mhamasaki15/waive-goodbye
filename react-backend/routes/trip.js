@@ -28,6 +28,7 @@ router.post('/create', function(req, res, next) {
 	var eventDate = Date(req.body.date);
 	var pdfName = "document.pdf";//req.body.pdfName; //TODO
 	var sender = "value1";
+    var recipientObjects;
 
 	console.log(recipients);
 	console.log(sender);
@@ -50,7 +51,7 @@ router.post('/create', function(req, res, next) {
 
 		RecipientSchema.collection.insert(recipientObjects, function(err){
 			if (err){
-				console.log("error");
+				console.log(err);
 			}
 			else{
 				console.log("Success");
@@ -81,6 +82,24 @@ router.post('/create', function(req, res, next) {
 		},
 
 		function(next) {
+            var tabs_zoo = {
+                "signHereTabs": [{
+                    "xPosition":"150",
+                    "yPosition":"535",
+                    "documentId":"1",
+                    "pageNumber":"1"
+                }]
+            };
+
+            var tabs_prom = {
+                "signHereTabs":[{
+                    "xPosition":"150",
+                    "yPosition":"320",
+                    "documentId":"1",
+                    "pageNumber":"1"
+                }]
+            }
+
 
 			var tabs = {
 				"signHereTabs": [{
@@ -100,7 +119,7 @@ router.post('/create', function(req, res, next) {
 					"tabs": tabs
 				});
 			});
-			//TODO: get all signers   	
+			//TODO: get all signers
 	    	var url = baseUrl + "/envelopes";
 	    	// following request body will place 1 signature tab 100 pixels to the right and
 	    	// 100 pixels down from the top left of the document that you send in the request
@@ -171,11 +190,8 @@ user is the user who is invited on the trip (by email) And display all
 the relevant information, which includes overview, forms, and opt in */
 //this is called from the dashboard
 router.get('/overview', function(req, res, next) {
-	var sender = "value1";
-	var eventName = req.params.eventName;
-
-	console.log(eventName);
-	eventName = "asdfasdf";
+	//var sender = req.session.passport.user;
+	//var eventName = req.body.eventName;
 
 	EventSchema.findOne({createdBy: sender, name: eventName}, function(err, obj){
 		if (err){

@@ -3,10 +3,22 @@ var router = express.Router();
 var passport = require('passport');
 var EventSchema = require("../models/EventSchema");
 
-router.get('/dashboard', function(req,res,next){
-    return EventSchema.find({createdBy: req.session.username});
-
-
+router.get('/', function(req,res,next){
+    EventSchema.find({createdBy: "value1"}).exec(function(err, events){
+    	var resp = {
+    		body: {
+    			events: [ ]
+    		}
+    	};
+		events.forEach(function(element){
+			resp.body.events.push({
+				event: element.name,
+				date: element.date, //TODO FIX THIS
+				overview: "Check Status",
+			});
+		});
+		res.json(resp);
+	});
 });
 
 
@@ -25,12 +37,5 @@ router.post('/dashboard', function(req,res,next) {
 });
 
 
-/* Should return all information related to user's trips and stuff */
-/* This should include both trips organized and trips part of */
-/* I guess it should also include relevant user information. */
-/* So it can say "welcome melanie" */
-router.get('/', function(req, res, next) {
-
-});
 
 module.exports = router;
