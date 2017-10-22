@@ -132,10 +132,7 @@ handleSubmit(event) {
             onChange={(e)=>this.uploadFiles(e)} />
               </div>
 
-              <p className={styles.input_title}>Payment Request</p>
-
-                <input type="text" id="moneyRequest"  className={styles.login_box} onChange = {this.handleMoneyChange.bind(this)} placeholder="0" required autoFocus />
-
+              
                 <p className={styles.input_title}></p>
                 <div className={styles.btnContainer}>
                 <button className={styles.btn} type="submit">Send Waivers</button>
