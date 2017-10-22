@@ -25,15 +25,12 @@ export default class OverviewPage extends Component{
 
 	componentDidMount(){
 		let self = this;
-		return fetch('/trip/overview', {
+		return fetch('/trip/overview/' + this.state.tripName, {
 			method: 'GET',
 			headers: {
                 'Accept': 'application/json',
 	            'Content-Type': 'application/json',	
-			},
-			params: JSON.stringify({
-				eventName: this.state.tripName
-			})
+			}
 		}).then((resp) => resp.json())
 		.then(function(data){
 			self.setState({ invites: data.body.recipients });

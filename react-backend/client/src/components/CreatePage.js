@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styles from './CreatePage.css';
+import { Redirect } from 'react-router';
+
 
 //'use strict';
 
@@ -17,33 +19,20 @@ const contactArray = [{
 
 export default class CreatePage extends Component {
   constructor(props){
-  super(props);
+    super(props);
     this.state = {
-    eventName:'',
-    eventDate:'',
-<<<<<<< HEAD
-    pdfString:'',
-    stringContactName:'',
-    stringContactEmail:''
-     
-};
-
-
-this.handleChange = this.handleChange.bind(this);
-this.handleDateChange = this.handleDateChange.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
-}
-=======
-    pdfString:'fieldtrip.pdf',
-    contactArray: this.contactArray
+      eventName:'',
+      eventDate:'',
+      pdfString:'',
+      stringContactName:'',
+      stringContactEmail:'',
+      redirect: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
->>>>>>> 24f2e4d6687c484619a26bb040512aaaaa944cc5
-
 
 handleChange(event) {
   console.log("even!");
@@ -63,12 +52,13 @@ uploadFiles(event){
   let reader = new FileReader();
   let file = event.target.files[0];
 
-    this.setState({pdfString: file.name});
+  this.setState({pdfString: file.name});
 
 }
 
 
 handleSubmit(event) {
+  event.preventDefault();
   var nameArray = this.state.stringContactName.split(',');
   var emailArray = this.state.stringContactEmail.split(',');
 
@@ -80,8 +70,9 @@ handleSubmit(event) {
     contactEmail: emailArray
   };
 
+  var self = this;
   console.log(body);
-  fetch("http://localhost:3000/trip/create", {
+  fetch("/trip/create", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -90,7 +81,14 @@ handleSubmit(event) {
     body: JSON.stringify(body)
   }).then(function(response) {
     console.log("response");
-    //return response.json();
+    console.log(response.status);
+    if (response.status == 200){
+      self.setState({
+        redirect:true
+      });
+    }
+  }).catch(function(err){
+    console.log("error");
   });
 
 }
@@ -98,10 +96,12 @@ handleSubmit(event) {
 
 
   render() {
-    return (
+    if (this.state.redirect) {
+        return <Redirect to="/dashboard" />;
+    }
 
+    return (
        <form onSubmit={this.handleSubmit}>
-               
                 <p className={styles.input_title}>Event Name</p>
 
                 <input type="text" id="eventName"  className={styles.login_box} onChange = {this.handleChange.bind(this)} placeholder="Event Name" required autoFocus />

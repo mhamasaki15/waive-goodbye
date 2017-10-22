@@ -23,31 +23,34 @@ who created trip, then send back information about trip. This is probably gonna
 be a HUGE get */
 router.post('/create', function(req, res, next) {
 	console.log(req.body);
-	var recipients = req.body.recipients;
+	var recipientNames = req.body.contactNames;
+	var recipientEmails = req.body.contactEmail;
+	console.log(recipientNames);
+	console.log(recipientEmails);
 	var eventName = req.body.name;
 	var eventDate = Date(req.body.date);
-	var pdfName = "document.pdf";//req.body.pdfName; //TODO
+	var pdfName = req.body.pdfString;//req.body.pdfName; //TODO
 	var sender = "value1";
     var recipientObjects;
+    documentName = "pdfs/" + pdfName;
 
-	console.log(recipients);
 	console.log(sender);
-		//var sender = req.session.passport.user;
 	console.log(eventName);
 	console.log(eventDate);
 
 
 	var newEvent = new EventSchema({createdBy: sender, name: eventName, date: eventDate});
 	newEvent.save(function (err){
+		console.log("great success");
 		recipientObjects = [ ];
-		recipients.forEach(function(element){
+		for (i=0; i<recipientNames.length; i++){
 			recipientObjects.push({
-				email: element.email,
-				name: element.name,
+				email: recipientEmails[i],
+				name: recipientNames[i],
 				status: false,
 				tripId: newEvent._id// uhh also the url
-			})
-		});
+			});
+		}
 
 		RecipientSchema.collection.insert(recipientObjects, function(err){
 			if (err){
@@ -100,25 +103,29 @@ router.post('/create', function(req, res, next) {
                 }]
             }
 
-
-			var tabs = {
-				"signHereTabs": [{
-					"xPosition": "100",
-					"yPosition": "100",
-					"documentId": "1",
-					"pageNumber": "1"
-				}]
-			}; //for use in signers
+            var tabs;
+            if (pdfName == "zoo_permission_slip.pdf") tabs = tabs_zoo;
+            else if (pdfName == "school_dance_form.pdf") tabs = tabs_prom;
+			// var tabs = {
+			// 	"signHereTabs": [{
+			// 		"xPosition": "100",
+			// 		"yPosition": "100",
+			// 		"documentId": "1",
+			// 		"pageNumber": "1"
+			// 	}]
+			// }; //for use in signers
 			var signers = [ ]; //todo
 			var id = 1;
-			recipients.forEach(function(element){
+
+			for (i=0; i<recipientNames.length; i++){
 				signers.push({
-					"email": element.email,
-					"name": element.name,
-					"recipientId": id++,
-					"tabs": tabs
+					email: recipientEmails[i],
+					name: recipientNames[i],
+					recipientId: id++,
+					tabs: tabs
 				});
-			});
+			}
+
 			//TODO: get all signers
 	    	var url = baseUrl + "/envelopes";
 	    	// following request body will place 1 signature tab 100 pixels to the right and
@@ -165,39 +172,35 @@ router.post('/create', function(req, res, next) {
 			];
 
 			// send the request...
-			request(options, function(err, res, body) {
-				parseResponseBody(err, res, body);
+			request(options, function(err, response, body) {
+				parseResponseBody(err, response, body);
+				console.log("xd");
+				return res.status(200).send("test").end();
 			});
+			console.log("i here");
+			//next();
 		} // end function
-
 	]);
-	return res.status(200);
-});
-
-/* Should get the forms from a specific user that the organizer requested */
-router.get('/organizer/form', function(req, res, next) {
 
 });
 
-
-/* Should only send emails to those people who SUCK aka haven't responded yet */
-router.post('/organizer/remind', function(req, res, next) {
-
-});
 
 /* Should take trip id as parameter, as well as user id. Should authenticate that
 user is the user who is invited on the trip (by email) And display all
 the relevant information, which includes overview, forms, and opt in */
 //this is called from the dashboard
-router.get('/overview', function(req, res, next) {
-	//var sender = req.session.passport.user;
-	//var eventName = req.body.eventName;
+router.get('/overview/:eventName', function(req, res, next) {
+	var sender = "value1";
+	console.log(req);
+	var eventName = req.params.eventName;
+	console.log(eventName);
 
 	EventSchema.findOne({createdBy: sender, name: eventName}, function(err, obj){
 		if (err){
 			console.log(err);
 		}
 		else{
+			console.log(obj);
 			var resp = {
 				body: {
 					recipients: [ ]
