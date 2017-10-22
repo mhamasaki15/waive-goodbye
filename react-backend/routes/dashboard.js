@@ -10,10 +10,22 @@ var 	email = "sirawan@usc.edu",				// your account email
     	baseUrl = "";
 var request = require('request');
 
-router.get('/dashboard', function(req,res,next){
-    return EventSchema.find({createdBy: req.session.username});
-
-
+router.get('/', function(req,res,next){
+    EventSchema.find({createdBy: "value1"}).exec(function(err, events){
+    	var resp = {
+    		body: {
+    			events: [ ]
+    		}
+    	};
+		events.forEach(function(element){
+			resp.body.events.push({
+				event: element.name,
+				date: element.date, //TODO FIX THIS
+				overview: "Check Status",
+			});
+		});
+		res.json(resp);
+	});
 });
 
 

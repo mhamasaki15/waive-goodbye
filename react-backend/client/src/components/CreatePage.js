@@ -21,7 +21,6 @@ export default class CreatePage extends Component {
     this.state = {
     eventName:'',
     eventDate:'',
-<<<<<<< HEAD
     pdfString:'',
     stringContactName:'',
     stringContactEmail:''
@@ -33,16 +32,6 @@ this.handleChange = this.handleChange.bind(this);
 this.handleDateChange = this.handleDateChange.bind(this);
 this.handleSubmit = this.handleSubmit.bind(this);
 }
-=======
-    pdfString:'fieldtrip.pdf',
-    contactArray: this.contactArray
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
->>>>>>> 24f2e4d6687c484619a26bb040512aaaaa944cc5
 
 
 handleChange(event) {
@@ -99,7 +88,8 @@ handleSubmit(event) {
 
   render() {
     return (
-
+      <div className={styles.card}>
+      <h1>Create Your Event</h1>
        <form onSubmit={this.handleSubmit}>
                
                 <p className={styles.input_title}>Event Name</p>
@@ -123,28 +113,19 @@ handleSubmit(event) {
                 </div>
 
                 <div>
-                <input className="fileInput" 
+                <input className={styles.fileInput} 
             type="file" 
             onChange={(e)=>this.uploadFiles(e)} />
-               
-             
-              <text>
-              {this.state.pdfString}
-              </text>
               </div>
-
-                <input type="text" id="eventName" name="eventName" value={this.state.eventName} className={styles.login_box} onChange = {this.handleChange} placeholder="Event Name" required autoFocus />
-                <p className={styles.input_title}>Event Date</p>
-                <input type="text" id="eventDate" className={styles.login_box} onChange = {this.handleDateChange} placeholder="01/01/2017" required />
 
                 <p className={styles.input_title}></p>
                 <div className={styles.btnContainer}>
-                <button className={styles.btn} type="submit">Create Event</button>
+                <button className={styles.btn} type="submit">Send Waivers</button>
                 </div>
 </form>
         
           
-
+</div>
           
          
       );

@@ -69,9 +69,31 @@ export default class DashboardPage extends Component{
 		super();
 		this.state = {
 			redirect: false,
-			tripUrl: ""
+			tripUrl: "",
+			events: [ ]
 		};
+		console.log("SDFKJSDLKFJSDF");
 		this.navigateToOverviewPage = this.navigateToOverviewPage.bind(this);
+		this.componentDidMount = this.componentDidMount.bind(this);
+	}
+
+	componentDidMount(){
+		let self = this;
+		console.log("hello");
+		return fetch('/dashboard', {
+			method: 'GET',
+			headers: {
+                'Accept': 'application/json',
+	            'Content-Type': 'application/json',	
+			}
+		}).then((resp) => resp.json())
+		.then(function(data){
+			self.setState({ events: data.body.events });
+			console.log("hello");
+			console.log(data);
+		}).catch(function(err){
+			console.log(err);
+		});
 	}
 
 	navigateToOverviewPage(row){
@@ -103,7 +125,7 @@ render(){
          </h1>
         </div>
 
-<BootstrapTable data={events} striped={true} hover={true} options = {options}>
+<BootstrapTable data={this.state.events} striped={true} hover={true} options = {options}>
       <TableHeaderColumn dataField="event" isKey={true} dataAlign="center" dataSort={true}>Event</TableHeaderColumn>
       <TableHeaderColumn dataField="date" dataSort={true}>Date</TableHeaderColumn>
       <TableHeaderColumn dataField="overview" dataFormat={ this.colFormatter}>Overview</TableHeaderColumn>
