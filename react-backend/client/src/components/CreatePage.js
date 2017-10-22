@@ -103,7 +103,7 @@ handleSubmit(event) {
        <form onSubmit={this.handleSubmit}>
                
                 <p className={styles.input_title}>Event Name</p>
-<<<<<<< HEAD
+
                 <input type="text" id="eventName"  className={styles.login_box} onChange = {this.handleChange.bind(this)} placeholder="Event Name" required autoFocus />
                 <p className={styles.input_title}>Event Date</p>
                 <input type="text" id="eventDate" className={styles.login_box} onChange = {this.handleDateChange.bind(this)} placeholder="01/01/2017" required />
@@ -133,11 +133,10 @@ handleSubmit(event) {
               </text>
               </div>
 
-=======
                 <input type="text" id="eventName" name="eventName" value={this.state.eventName} className={styles.login_box} onChange = {this.handleChange} placeholder="Event Name" required autoFocus />
                 <p className={styles.input_title}>Event Date</p>
                 <input type="text" id="eventDate" className={styles.login_box} onChange = {this.handleDateChange} placeholder="01/01/2017" required />
->>>>>>> 24f2e4d6687c484619a26bb040512aaaaa944cc5
+
                 <p className={styles.input_title}></p>
                 <div className={styles.btnContainer}>
                 <button className={styles.btn} type="submit">Create Event</button>
