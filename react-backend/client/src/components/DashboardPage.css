@@ -1,0 +1,7 @@
+:local(.mainContainer){
+	padding-top: 20%;
+};
+
+:local(.createStyle){
+	padding-top: 0px;
+};
