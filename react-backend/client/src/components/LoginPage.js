@@ -20,8 +20,6 @@ export default class LoginPage extends Component {
     login() {
         var usr = "value1";
         var pass = "value2";
-        console.log(this.state.redirect);
-        console.log("asdfasdfads");
         var self = this;
         fetch("/log", {
             method:'POST',

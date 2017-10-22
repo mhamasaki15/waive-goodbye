@@ -189,8 +189,11 @@ user is the user who is invited on the trip (by email) And display all
 the relevant information, which includes overview, forms, and opt in */
 //this is called from the dashboard
 router.get('/overview', function(req, res, next) {
-	//var sender = req.session.passport.user;
-	//var eventName = req.body.eventName;
+	var sender = "value1";
+	var eventName = req.params.eventName;
+
+	console.log(eventName);
+	eventName = "asdfasdf";
 
 	EventSchema.findOne({createdBy: sender, name: eventName}, function(err, obj){
 		if (err){
