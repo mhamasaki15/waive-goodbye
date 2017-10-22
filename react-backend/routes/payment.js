@@ -10,7 +10,7 @@ var 	email = "sirawan@usc.edu",				// your account email
     	password = "nosleep",			// your account password
     	integratorKey = "fa2dce99-1a16-48f4-b63d-603edbfb3f13",			// your Integrator Key (found on the Preferences -> API page)
 		recipientName = "Melanie Hamasaki"
-        recipientEmail= "sirawan@usc.edu",			// recipient (signer) name
+        recipientEmail= "ramosaj@usc.edu",			// recipient (signer) name
     	documentName = "pdfs/document.pdf",
         docusignEnv='demo',		// copy document with this name into same directory!
     	baseUrl = 'https://' + docusignEnv + '.docusign.net/restapi',
@@ -68,7 +68,7 @@ function requestPayment(loginAccounts, next){
 
     // create a byte array that will hold our document bytes
     var fileBytes = null;
-    var fileToSign = "pdfs/document.pdf";
+    var fileToSign = "pdfs/school_dance_form.pdf";
     try {
       // read file from a local directory
       fileBytes = fs.readFileSync(fileToSign);
@@ -104,12 +104,14 @@ function requestPayment(loginAccounts, next){
 
     // create a signHere tab somewhere on the document for the signer to sign
     // - a SignHere Tab is ---NOT--- required for payments!
+    //zoo_permission : x:150 y:535
+    //school_dance: x:150 y:320
     var signHere = new docusign.SignHere();
     signHere.documentId = '1';
     signHere.pageNumber = '1';
     signHere.recipientId = '1';
-    signHere.xPosition = '100';
-    signHere.yPosition = '200';
+    signHere.xPosition = '150';
+    signHere.yPosition = '320';
 
 
     // Create the NumberTab to hold the payment information

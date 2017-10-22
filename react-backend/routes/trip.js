@@ -28,6 +28,7 @@ router.post('/create', function(req, res, next) {
 	var eventDate = Date(req.body.date);
 	var pdfName = "document.pdf";//req.body.pdfName; //TODO
 	var sender = "value1";
+    var recipientObjects;
 
 	console.log(recipients);
 	console.log(sender);
@@ -50,7 +51,7 @@ router.post('/create', function(req, res, next) {
 
 		RecipientSchema.collection.insert(recipientObjects, function(err){
 			if (err){
-				console.log("error");
+				console.log(err);
 			}
 			else{
 				console.log("Success");
@@ -81,6 +82,23 @@ router.post('/create', function(req, res, next) {
 		},
 
 		function(next) {
+            var tabs_zoo = {
+                "signHereTabs": [{
+                    "xPosition":"150",
+                    "yPosition":"535",
+                    "documentId":"1",
+                    "pageNumber":"1"
+                }]
+            };
+
+            var tabs_prom = {
+                "signHereTabs":[{
+                    "xPosition":"150",
+                    "yPosition":"320",
+                    "documentId":"1",
+                    "pageNumber":"1"
+                }]
+            }
 
 			var tabs = {
 				"signHereTabs": [{
@@ -100,7 +118,7 @@ router.post('/create', function(req, res, next) {
 					"tabs": tabs
 				});
 			});
-			//TODO: get all signers   	
+			//TODO: get all signers
 	    	var url = baseUrl + "/envelopes";
 	    	// following request body will place 1 signature tab 100 pixels to the right and
 	    	// 100 pixels down from the top left of the document that you send in the request
